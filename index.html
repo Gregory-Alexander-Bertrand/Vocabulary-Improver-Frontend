@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Kodchasan">
+
     <title>Document</title>
 </head>
 <body>
-    
+   <div class="container">
+       <section class="login-signup">
+           <div class="sign-up">
+               <form class="sign-up-menu">
+                   <div class="form-control">
+                   <label for="name">Name</label>
+                   <input type="text" id="name" placeholder="name">
+                   </div>
+                   <div class="form-control">
+                   <label for="email">Email</label>
+                   <input type="text" id="email" placeholder="email">
+                   </div>
+                   <div class="form-control">
+                   <label for="pasword">Password</label>
+                   <input type="password" id="password" placeholder="password">
+                   </div>
+                   <input type="submit" value="sign up">
+               </form>
+           </div>
+           <div class="login">
+               <form class="login-menu">
+                   <div class="form-control">
+                   <label for="email">Email</label>
+                   <input type="text" id="email-login">
+                   </div>
+                   <div class="form-control">
+                   <label for="password">Password</label>
+                   <input type="password" id="password-login">
+                   </div>
+                   <input type="submit" value="login">
+               </form>
+           </div>
+       </section>
+       <section class="hidden" id="dictionary">
+        <form class="word-look-up">
+            <input type="text" class="look-up" placeholder="search">
+        </form>
+       </section>
+   </div>
+   <script src="./app.js"></script>
 </body>
 </html>
