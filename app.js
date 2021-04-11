@@ -47,8 +47,8 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
         })
         console.log(response)
 
-        const userId = response.data.user.id
-        localStorage.setItem('userId', userId)
+        const logedInUserId = response.data.user.id
+        localStorage.setItem('logedInUserId', logedInUserId)
         console.log(userId)
 
     } catch (error) {
@@ -65,4 +65,12 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     const choosenWord = document.createElement('h1')
     choosenWord.textContent = searchResults
     userWord.appendChild(choosenWord)
+
+    try {
+        const searchBar = document.querySelector('.look-up').value
+        const res = await axios.post(`http://localhost:3001/word/search/${searchBar}`)
+        console.log(res.data)
+    } catch (error) {
+        console.log(error)
+    }
 })
