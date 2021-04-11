@@ -82,6 +82,22 @@ body {
     flex-direction: column;
 }
 
+.look-up {
+    width: 350px;
+    border-radius: 5px;
+    border: 1px solid #a78b38;
+}
+
+.word-container {
+    border: 1px solid black;
+    height: 200px;
+    background-color: #bc8f8f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'kodchasan', sans-serif;
+}
+
 .hidden {
     display: none;
 }
