@@ -1,5 +1,5 @@
-
-
+//////////////////////////////////////////////////
+///////lines 3-39 operate the sign-up form.
 document.querySelector('.sign-up-menu').addEventListener('submit', async (event) => {
     event.preventDefault()
     console.log('button hit')
@@ -11,8 +11,15 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
     document.querySelector('.sign-up').classList.add('hidden')
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
-    document.querySelector('.user-name').classList.remove('hidden')
+    // document.querySelector('.user-name').classList.remove('hidden')
 
+
+    document.querySelector('#user-welcome').classList.remove('hidden')
+
+    const welcomeUser = document.querySelector('#user-welcome')
+    const currentUser = document.createElement('h1')
+    currentUser.textContent = emailInput
+    welcomeUser.appendChild(currentUser)
 
     try {
         const response = await axios.post('http://localhost:3001/user/create', {
@@ -30,7 +37,8 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
     }
     
 })
-
+///////////////////////////////
+//lines 40-80 operate the login form.
 const emailInput = document.querySelector('#email-login').value
 const passwordInput =document.querySelector('#password-login').value
 
@@ -44,6 +52,12 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
     document.querySelector('.sign-up').classList.add('hidden')
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
+    document.querySelector('#user-welcome').classList.remove('hidden')
+
+    const welcomeUser = document.querySelector('#user-welcome')
+    const currentUser = document.createElement('h1')
+    currentUser.textContent = "welcome `${emailInput}`"
+    welcomeUser.appendChild(currentUser)
 
     // try {
         const response = await axios.post('http://localhost:3001/user/login', {
@@ -63,17 +77,27 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
     //     console.log(error)
     // }
 })
-
+//////////////////////////////////////////////
+//lines 82-99 operate the search bar.
 document.querySelector('.searchBar').addEventListener('submit', async (event) => {
     event.preventDefault()
     const searchResults = document.querySelector('.look-up').value
     console.log(searchResults)
-    document.querySelector('.searchBar').classList.add('hidden')
-
     const userWord = document.querySelector('.word-container')
-    const choosenWord = document.createElement('h1')
+
+    while (userWord.firstChild){
+        userWord.firstChild.remove()
+    }
+
+    const choosenWord = document.createElement('h2')
     choosenWord.textContent = searchResults
     userWord.appendChild(choosenWord)
+    
+
+    const storedWords = document.querySelector('.stored-words')
+    const savedWord = document.createElement('p')
+    savedWord.textContent = searchResults
+    storedWords.appendChild(savedWord)
 
     try {
         const searchBar = document.querySelector('.look-up').value
@@ -83,3 +107,9 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
         console.log(error)
     }
 })
+
+////////////////////////////////////////////////
+
+// choosenWord.addEventListener('click', () => {
+//     console.log('click')
+// })
