@@ -11,6 +11,7 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
     document.querySelector('.sign-up').classList.add('hidden')
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
+    document.querySelector('.user-name').classList.remove('hidden')
 
 
     try {
@@ -30,36 +31,44 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
     
 })
 
+const emailInput = document.querySelector('#email-login').value
+const passwordInput =document.querySelector('#password-login').value
+
 document.querySelector('.login-menu').addEventListener('submit', async (event) => {
     event.preventDefault()
 
-    const emailInput = document.querySelector('#email').value
-    const passwordInput =document.querySelector('#password').value
+    const emailInput = document.querySelector('#email-login').value
+    const passwordInput =document.querySelector('#password-login').value
+    console.log(emailInput, passwordInput)
 
     document.querySelector('.sign-up').classList.add('hidden')
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
 
-    try {
+    // try {
         const response = await axios.post('http://localhost:3001/user/login', {
             email: emailInput,
             password: passwordInput
+
         })
+        console.log(emailInput, passwordInput)
         console.log(response)
+        
 
-        const logedInUserId = response.data.user.id
+        const logedInUserId = response.data.id
         localStorage.setItem('logedInUserId', logedInUserId)
-        console.log(userId)
+        
 
-    } catch (error) {
-        console.log(error)
-    }
+    // } catch (error) {
+    //     console.log(error)
+    // }
 })
 
 document.querySelector('.searchBar').addEventListener('submit', async (event) => {
     event.preventDefault()
     const searchResults = document.querySelector('.look-up').value
     console.log(searchResults)
+    document.querySelector('.searchBar').classList.add('hidden')
 
     const userWord = document.querySelector('.word-container')
     const choosenWord = document.createElement('h1')
