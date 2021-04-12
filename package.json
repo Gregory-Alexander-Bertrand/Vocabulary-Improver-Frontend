@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Gregory-Alexander-Bertrand/Vocabulary-Improver-Frontend#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "replace-in-file": "^6.2.0",
     "rowdy-logger": "^1.0.2"
   }
 }
