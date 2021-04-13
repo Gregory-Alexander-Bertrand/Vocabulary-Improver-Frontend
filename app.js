@@ -1,4 +1,10 @@
+
+
+
 //////////////////////////////////////////////////
+
+// const { response } = require("express")
+
 ///////lines 3-39 operate the sign-up form.
 document.querySelector('.sign-up-menu').addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -56,7 +62,7 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
 
     const welcomeUser = document.querySelector('#user-welcome')
     const currentUser = document.createElement('h1')
-    currentUser.textContent = "welcome `${emailInput}`"
+    currentUser.innerHTML = ` welcome ${emailInput}`
     welcomeUser.appendChild(currentUser)
 
     // try {
@@ -99,17 +105,38 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     savedWord.textContent = searchResults
     storedWords.appendChild(savedWord)
 
-    try {
-        const searchBar = document.querySelector('.look-up').value
-        const res = await axios.post(`http://localhost:3001/word/search/${searchBar}`)
-        console.log(res.data)
-    } catch (error) {
-        console.log(error)
-    }
+    // try {
+    //     const searchBar = document.querySelector('.look-up').value
+    //     const res = await axios.post(`http://localhost:3001/word/search/${searchBar}`)
+    //     console.log(res.data)
+    // } catch (error) {
+    //     console.log(error)
+    // }
 })
 
 ////////////////////////////////////////////////
 
 // choosenWord.addEventListener('click', () => {
 //     console.log('click')
+// })
+
+
+// fetch('https://api.dictionaryapi.dev/api/v2/entries/en_US/hello').then((response) => {
+//     response.json().then((json) => {
+//         console.log(json)
+//     })
+// })
+
+// const hello = document.querySelector('#word-container')
+
+// document.querySelector('.getHello').addEventListener('click', () => {
+//     console.log('click')
+
+//     fetch('https://api.dictionaryapi.dev/api/v2/entries/en_US/hello').then((response) => {
+//     response.json().then((json) => {
+//         console.log(json.object)
+
+//         hello.innerHTML = json.object
+//     })
+// })
 // })
