@@ -94,10 +94,12 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     const response = await axios.post(`http://localhost:3001/word/search/`, {
         word: searchResults
     })
-    console.log(response)
+    // console.log(response.data[0].def[0].sseq[0][0])
+    console.log(response.data[1].shortdef[1])
 
     const userWord = document.querySelector('.word-container')
 
+    
     while (userWord.firstChild){
         userWord.firstChild.remove()
     }
@@ -105,6 +107,10 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     const choosenWord = document.createElement('h2')
     choosenWord.textContent = searchResults
     userWord.appendChild(choosenWord)
+
+    let wordDate = document.createElement('p')
+    wordDate.textContent = response.data[1].shortdef
+    userWord.appendChild(wordDate)
     
 
     const storedWords = document.querySelector('.stored-words')
@@ -112,8 +118,7 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     savedWord.textContent = searchResults
     storedWords.appendChild(savedWord)
 
-    // const response = await axios.get(`https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key=ac3df2b2-fb26-4c50-9822-45655d18ed94`)
-    // console.log(response.data)
+    
 })
 
 ////////////////////////////////////////////////
