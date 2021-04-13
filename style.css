@@ -68,6 +68,10 @@ body {
     padding: 10px 10px;
 }
 
+.sign-up-button {
+    cursor: pointer;
+}
+
 .login {
     background-color: #a78b38;
     height: 70%;
@@ -80,6 +84,10 @@ body {
 .login-menu {
     display: flex;
     flex-direction: column;
+}
+
+.login-button {
+    cursor: pointer;
 }
 
 h1 {
@@ -125,7 +133,7 @@ h2:hover {
     background-color: #a78b38;
 }
 
-.saved-words {
+#saved-words {
     margin-top: 30px;
     height: 30%;
     width: 100%;

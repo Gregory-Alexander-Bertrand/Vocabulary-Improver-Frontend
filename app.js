@@ -24,7 +24,7 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
 
     const welcomeUser = document.querySelector('#user-welcome')
     const currentUser = document.createElement('h1')
-    currentUser.textContent = emailInput
+    currentUser.textContent = `Welcome, ${nameInput}`
     welcomeUser.appendChild(currentUser)
 
     try {
@@ -62,7 +62,7 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
 
     const welcomeUser = document.querySelector('#user-welcome')
     const currentUser = document.createElement('h1')
-    currentUser.innerHTML = ` welcome ${emailInput}`
+    currentUser.innerHTML = ` welcome, ${emailInput}`
     welcomeUser.appendChild(currentUser)
 
     // try {
@@ -87,8 +87,15 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
 //lines 82-99 operate the search bar.
 document.querySelector('.searchBar').addEventListener('submit', async (event) => {
     event.preventDefault()
+    document.querySelector('#saved-words').classList.remove('hidden')
     const searchResults = document.querySelector('.look-up').value
     console.log(searchResults)
+
+    const response = await axios.post(`http://localhost:3001/word/search/`, {
+        word: searchResults
+    })
+    console.log(response)
+
     const userWord = document.querySelector('.word-container')
 
     while (userWord.firstChild){
@@ -105,38 +112,29 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     savedWord.textContent = searchResults
     storedWords.appendChild(savedWord)
 
-    // try {
-    //     const searchBar = document.querySelector('.look-up').value
-    //     const res = await axios.post(`http://localhost:3001/word/search/${searchBar}`)
-    //     console.log(res.data)
-    // } catch (error) {
-    //     console.log(error)
-    // }
+    // const response = await axios.get(`https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key=ac3df2b2-fb26-4c50-9822-45655d18ed94`)
+    // console.log(response.data)
 })
 
 ////////////////////////////////////////////////
 
-// choosenWord.addEventListener('click', () => {
-//     console.log('click')
-// })
 
 
-// fetch('https://api.dictionaryapi.dev/api/v2/entries/en_US/hello').then((response) => {
-//     response.json().then((json) => {
-//         console.log(json)
-//     })
-// })
+// console.log(fetch('https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key=ac3df2b2-fb26-4c50-9822-45655d18ed94'))
 
-// const hello = document.querySelector('#word-container')
 
-// document.querySelector('.getHello').addEventListener('click', () => {
-//     console.log('click')
 
-//     fetch('https://api.dictionaryapi.dev/api/v2/entries/en_US/hello').then((response) => {
-//     response.json().then((json) => {
-//         console.log(json.object)
 
-//         hello.innerHTML = json.object
-//     })
-// })
+
+
+// document.querySelector('#searchBtn').addEventListener('submit', async(event) => {
+//     event.preventDefault()
+
+//     try {
+//         const searchInput = document.querySelector('.searchBar').value
+//         const response = await axios.get(`http://localhost:3001/word/findAll/${searchInput}`)
+//         console.log(response.data)
+//     } catch (error) {
+//         console.log(error)
+//     }
 // })
