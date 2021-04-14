@@ -173,6 +173,11 @@ p {
     width: 100%;
     border: 1px solid black;
     background-color: rgb(139, 69, 19, .6);
+    cursor: pointer;
+}
+
+#saved-words:hover {
+    background-color: #8b4513;
 }
 
 .stored-words {
