@@ -27,6 +27,7 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
     document.querySelector('#dictionary').classList.remove('hidden')
     document.querySelector('#logout').classList.remove('hidden')
     // document.querySelector('.user-name').classList.remove('hidden')
+    document.querySelector('#delete-account').classList.remove('hidden')
 
 
     document.querySelector('#user-welcome').classList.remove('hidden')
@@ -44,7 +45,7 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
         })
         console.log(response)
 
-        const userId = response.data.user.userId
+        const userId = response.data.user.id
         console.log(userId)
         localStorage.setItem('userId', userId)
     } catch (error) {
@@ -69,6 +70,7 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
     document.querySelector('#dictionary').classList.remove('hidden')
     document.querySelector('#user-welcome').classList.remove('hidden')
     document.querySelector('#logout').classList.remove('hidden')
+    document.querySelector('#delete-account').classList.remove('hidden')
 
     const welcomeUser = document.querySelector('#user-welcome')
     const currentUser = document.createElement('h1')
@@ -175,5 +177,23 @@ favoriteMenu.addEventListener('submit', async (event) => {
 
     savedNotes.insertAdjacentHTML("beforeend", output);
    
+})
+
+document.querySelector('#delete-account').addEventListener('click', async() => {
+    
+
+    try {
+        const id = localStorage.getItem('logedInUserId')
+
+        const response = await axios.delete(`http://localhost:3001/user/${id}`, {
+        })
+        console.log(response)
+        if (response.status === 200) {
+            localStorage.clear()
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
 })
 
