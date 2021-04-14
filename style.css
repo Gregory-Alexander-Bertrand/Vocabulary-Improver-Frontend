@@ -30,6 +30,16 @@ body {
     font-weight: 700;
 }
 
+#delete-account {
+    width: 100px;
+    height: 40px;
+    background-color: #a78b38;
+    border: 1px solid #bc8f8f;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
 .login-signup {
     display: flex;
     flex-direction: row;

@@ -180,8 +180,8 @@ favoriteMenu.addEventListener('submit', async (event) => {
 })
 
 document.querySelector('#delete-account').addEventListener('click', async() => {
-    
-
+    document.querySelector('#user-welcome').classList.add('hidden')
+    handleLogout()
     try {
         const id = localStorage.getItem('logedInUserId')
 
