@@ -2,7 +2,15 @@
 
 
 //////////////////////////////////////////////////
+const handleLogout = () => {
+    window.localStorage.clear()
+    window.location.reload(true)
+    window.location.replace('/')
+}
 
+document.querySelector('#logout').addEventListener('click', () => {
+    handleLogout()
+})
 // const { response } = require("express")
 
 ///////lines 3-39 operate the sign-up form.
@@ -17,6 +25,7 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
     document.querySelector('.sign-up').classList.add('hidden')
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
+    document.querySelector('#logout').classList.remove('hidden')
     // document.querySelector('.user-name').classList.remove('hidden')
 
 
@@ -59,6 +68,7 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
     document.querySelector('#user-welcome').classList.remove('hidden')
+    document.querySelector('#logout').classList.remove('hidden')
 
     const welcomeUser = document.querySelector('#user-welcome')
     const currentUser = document.createElement('h1')
@@ -88,6 +98,7 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
 document.querySelector('.searchBar').addEventListener('submit', async (event) => {
     event.preventDefault()
     document.querySelector('#saved-words').classList.remove('hidden')
+    document.querySelector('#favorite-word').classList.remove('hidden')
     const searchResults = document.querySelector('.look-up').value
     console.log(searchResults)
 
@@ -113,33 +124,56 @@ document.querySelector('.searchBar').addEventListener('submit', async (event) =>
     userWord.appendChild(wordDate)
     
 
-    const storedWords = document.querySelector('.stored-words')
-    const savedWord = document.createElement('p')
-    savedWord.textContent = searchResults
-    storedWords.appendChild(savedWord)
+    // const storedWords = document.querySelector('.stored-words')
+    // const savedWord = document.createElement('p')
+    // savedWord.textContent = searchResults
+    // storedWords.appendChild(savedWord)
 
     
 })
 
 ////////////////////////////////////////////////
+// const saveWord = document.querySelector('#save')
+// // console.log(saveWord)
 
-
-
-// console.log(fetch('https://dictionaryapi.com/api/v3/references/collegiate/json/"+word+"?key=ac3df2b2-fb26-4c50-9822-45655d18ed94'))
-
-
-
-
-
-
-// document.querySelector('#searchBtn').addEventListener('submit', async(event) => {
+// saveWord.addEventListener('click', async (event) => {
 //     event.preventDefault()
-
+//     const word = document.querySelector('.searchBar')
+//     console.log(word)
 //     try {
-//         const searchInput = document.querySelector('.searchBar').value
-//         const response = await axios.get(`http://localhost:3001/word/findAll/${searchInput}`)
-//         console.log(response.data)
+//         let wordId = localStorage.setItem('wordId')
 //     } catch (error) {
-//         console.log(error)
+//         console.log(res)
 //     }
 // })
+
+const favoriteMenu = document.querySelector('.favorite-menu')
+console.log(favoriteMenu)
+
+favoriteMenu.addEventListener('submit', async (event) => {
+    event.preventDefault()
+
+    const wordName = document.querySelector('#word-name').value
+    console.log(wordName)
+    const wordNotes = document.querySelector('#word-notes').value
+    console.log(wordNotes)
+    // const storedWords = document.querySelector('.stored-words')
+    // const savedWord = document.createElement('div')
+    // savedWord.className = 'my-class'
+    // savedWord.textContent = wordName
+    // storedWords.appendChild(savedWord)
+    // const savedNote = document.createElement('div')
+    // savedNote.textContent = wordNotes
+    // storedWords.appendChild(savedNote)
+    // console.log(savedNote)
+
+
+    const savedNotes = document.querySelector('.stored-words');
+    const output = `<ul class="note-container">
+    <li class="note">${wordName}</li>
+    <li class="note">${wordNotes}</li></ul>`;
+
+    savedNotes.insertAdjacentHTML("beforeend", output);
+   
+})
+

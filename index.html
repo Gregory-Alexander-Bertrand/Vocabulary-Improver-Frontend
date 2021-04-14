@@ -11,6 +11,7 @@
 </head>
 <body>
    <div class="container">
+       <button class="hidden" id="logout">logout</button>
        <section class="login-signup">
            <div class="sign-up">
                <form class="sign-up-menu">
@@ -33,7 +34,7 @@
                <form class="login-menu">
                    <div class="form-control">
                    <label for="email">Email</label>
-                   <input type="text" id="email-login" placeholder="email">
+                   <input type="text" id="email-login" onfocus="this.value= ''" value="email">
                    </div>
                    <div class="form-control">
                    <label for="password">Password</label>
@@ -42,14 +43,29 @@
                    <input type="submit" value="login" class="login-button">
                </form>
            </div>
+           <div class="hidden" id="favorite-word">
+               <form class="favorite-menu">
+                   <div class="form-control">
+                       <label for="name">Name</label>
+                       <input type="text" id="word-name" onfocus="this.value= ''" value="word">
+                   </div>
+                   <div class="form-control">
+                       <label for="notes">Notes</label>
+                       <input type="text" id="word-notes" onfocus="this.value= ''" value="notes">
+                       <input type="submit" value="save" class="save-button">
+                   </div>
+               </form>
+           </div>
            <div class="hidden" id="user-welcome">
         
            </div>
+           
        </section>
-       <section class="view" id="dictionary">
+       <section class="hidden" id="dictionary">
         <form class="searchBar" id="word-look-up">
-            <input type="text" class="look-up" placeholder="search">
+            <input type="text" class="look-up" onfocus="this.value=''" value="search">
             <input type="submit" value="search" id="searchBtn">
+            <!-- <button type="button" id="save">Save Word</button> -->
         </form>
         <div class="word-container" id="word-container">
             <!-- <h2 class="word">Example</h2> -->
