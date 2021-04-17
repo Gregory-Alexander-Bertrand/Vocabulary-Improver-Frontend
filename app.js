@@ -57,7 +57,7 @@ document.querySelector('.sign-up-menu').addEventListener('submit', async (event)
 //lines 40-80 operate the login form.
 const emailInput = document.querySelector('#email-login').value
 const passwordInput =document.querySelector('#password-login').value
-
+let currentUserId = ''
 document.querySelector('.login-menu').addEventListener('submit', async (event) => {
     event.preventDefault()
 
@@ -65,6 +65,16 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
     const passwordInput =document.querySelector('#password-login').value
     console.log(emailInput, passwordInput)
 
+    const logedInUser = await axios.post('http://localhost:3001/user/login', {
+        email: emailInput,
+        password: passwordInput
+    })
+    console.log(`LOGEDINUSER`, logedInUser)
+    console.log(`LOGEDINUSER.DATA`, logedInUser.data)
+    console.log(`LOGEDINUSER.DATA.NAME`, logedInUser.data.name)
+    console.log(`LOGEDINUSER.DATA.ID`, logedInUser.data.id)
+    currentUserId = logedInUser.data.id
+    console.log(`CURRENTUSERID`, currentUserId)
     document.querySelector('.sign-up').classList.add('hidden')
     document.querySelector('.login').classList.add('hidden')
     document.querySelector('#dictionary').classList.remove('hidden')
@@ -76,6 +86,24 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
     const currentUser = document.createElement('h1')
     currentUser.innerHTML = ` welcome, ${emailInput}`
     welcomeUser.appendChild(currentUser)
+
+    const getAllwords = await axios.get('http://localhost:3001/word/' + currentUserId)
+    console.log(`ALLWORDS`, getAllwords)
+    console.log( `ALLWORDS.DATA`,getAllwords.data)
+    console.log(`ALLWORDS.DATA.WORDS`,getAllwords.data.words)
+    console.log(`ALLWORDS.DATA.WORDS[0]`,getAllwords.data.words[0])
+    console.log(`ALLWORDS.DATA.WORDS[0].name`,getAllwords.data.words[0].name)
+    console.log(`ALLWORDS.DATA.WORDS[0].notes`,getAllwords.data.words[0].notes)
+
+    const allWords = getAllwords.data.words 
+    // const wordHolder = document.querySelector('#word-container').
+    const wordArray = []
+    for (i= 0;  i < allWords.length; i++) {
+        // wordHolder.appendChild(allWords.name)
+        wordArray.push(allWords[i].name)
+    }
+    console.log( `WORDARRAY`,wordArray)
+    document.querySelector('#word-container').innerHTML = wordArray
 
     // try {
         const response = await axios.post('http://localhost:3001/user/login', {
@@ -159,6 +187,13 @@ favoriteMenu.addEventListener('submit', async (event) => {
     console.log(wordName)
     const wordNotes = document.querySelector('#word-notes').value
     console.log(wordNotes)
+    console.log(`POST ROUTE FOR WORDS CURRENTUSERID`,currentUserId)
+    const sentWord = axios.post(`http://localhost:3001/word/create`, {
+        name: wordName,
+        notes: wordNotes,
+        userId: currentUserId
+    })
+
     // const storedWords = document.querySelector('.stored-words')
     // const savedWord = document.createElement('div')
     // savedWord.className = 'my-class'
