@@ -217,6 +217,10 @@ favoriteMenu.addEventListener('submit', async (event) => {
 document.querySelector('#delete-account').addEventListener('click', async() => {
     document.querySelector('#user-welcome').classList.add('hidden')
     document.querySelector('#goodbye-user').classList.remove('hidden')
+    document.querySelector('#logout').classList.add('hidden')
+    document.querySelector('.look-up').classList.add('hidden')
+    document.querySelector('#searchBtn').classList.add('hidden')
+
     
     const goodbyeUser = document.querySelector('#goodbye-user')
     const goodbyeMessage = document.createElement('h1')
