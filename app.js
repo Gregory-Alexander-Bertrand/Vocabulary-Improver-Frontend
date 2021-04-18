@@ -103,7 +103,7 @@ document.querySelector('.login-menu').addEventListener('submit', async (event) =
         wordArray.push(allWords[i].name)
     }
     console.log( `WORDARRAY`,wordArray)
-    document.querySelector('#word-container').innerHTML = wordArray
+    document.querySelector('#saved-words').innerHTML = wordArray
 
     // try {
         const response = await axios.post('http://localhost:3001/user/login', {
@@ -205,7 +205,7 @@ favoriteMenu.addEventListener('submit', async (event) => {
     // console.log(savedNote)
 
 
-    const savedNotes = document.querySelector('.stored-words');
+    const savedNotes = document.querySelector('.word-storage');
     const output = `<ul class="note-container">
     <li class="note">${wordName}</li>
     <li class="note">${wordNotes}</li></ul>`;
@@ -225,12 +225,13 @@ document.querySelector('#delete-account').addEventListener('click', async() => {
 
     try {
         const id = localStorage.getItem('logedInUserId')
+        console.log(id)
 
         const response = await axios.delete(`http://localhost:3001/user/${id}`, {
         })
         console.log(response)
         if (response.status === 200) {
-            localStorage.clear()
+            localStorage.removeItem('logedInUserId')
         }
 
     } catch (error) {
